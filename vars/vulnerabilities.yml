@@ -1,0 +1,14 @@
+# Root directory where all file shares live
+file_share_root: "C:\\Shares"
+
+# Name of the insecure public share
+file_share_name: "PublicShare"
+
+# Full derived path for population
+populate_share_path: "{{ file_share_root }}\\{{ file_share_name }}"
+
+# Weak local administrator account
+weak_admin_user: "legacy_admin"
+weak_admin_password: "Password123!"
+
+

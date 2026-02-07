@@ -1,0 +1,280 @@
+# Purpose
+# Cyberpunk-themed junk content for SMB share population
+# Used by deploy-populate.yml
+
+populate_share_path: "{{ file_share_root }}\\{{ file_share_name }}"
+
+populate:
+  - folder: "NetWatch"
+    files:
+      - name: "netwatch_scan.log"
+        content: |
+          === NETWATCH PERIMETER SCAN ===
+          Timestamp: 2077-11-03 02:14:22
+          Node: NC-GRID-77
+          Status: PARTIAL FAILURE
+
+          • Blackwall latency spike detected
+          • 3 unauthorized AI signatures observed
+          • Traceback attempts failed
+          • Incident escalated to Tier-0 response
+
+          Operator Note:
+          Further analysis blocked by executive override.
+
+      - name: "ai_activity.txt"
+        content: |
+          AI ACTIVITY REPORT
+          ------------------
+          Classification: UNSANCTIONED
+          Behavior: Self-modifying code observed
+          Containment: TEMPORARY
+
+          Warning:
+          Do not isolate node without NetWatch approval.
+          Kill switch requires dual authorization.
+
+      - name: "incident_2077.txt"
+        content: |
+          Incident ID: 2077-NC-441
+          Location: Pacifica subnet
+          Severity: CRITICAL
+
+          Summary:
+          Blackwall containment layer destabilized for 43 seconds.
+          Data leakage confirmed.
+          Responsible parties unknown.
+
+  - folder: "Arasaka"
+    files:
+      - name: "project_relic.txt"
+        content: |
+          PROJECT RELIC – INTERNAL USE ONLY
+
+          Prototype: Secure Biochip
+          Memory Engram Capacity: UNKNOWN
+          Subject Compatibility: LIMITED
+
+          Status:
+          Prototype missing during Night City transfer.
+          Internal investigation ongoing.
+
+          Do not disclose to non-board personnel.
+
+      - name: "finance_dump.xlsx"
+        content: |
+          ARASAKA FINANCIAL ARCHIVE
+          =========================
+
+          Q3 Budget Adjustments
+          • Black Ops Allocation: INCREASED
+          • R&D Oversight: REDUCED
+          • Compliance Penalties: ABSORBED
+
+          NOTE:
+          File partially corrupted during encryption.
+
+      - name: "board_minutes.txt"
+        content: |
+          BOARD MEETING MINUTES
+          Date: 2077-08-19
+
+          Agenda:
+          • Hostile acquisition approval
+          • NetWatch cooperation status
+          • Asset deniability protocols
+
+          Resolution:
+          Motion passed without dissent.
+
+  - folder: "Militech"
+    files:
+      - name: "weapons_manifest.csv"
+        content: |
+          UNIT, SERIAL, LOCATION, STATUS
+          M-10AF, REDACTED, NC-WAREHOUSE-3, ACTIVE
+          DR-12, REDACTED, OUTER ZONE, IN TRANSIT
+          HX-09, REDACTED, CLASSIFIED, LOCKED
+
+      - name: "contract_ops.txt"
+        content: |
+          MILITECH CONTRACT OPERATIONS
+
+          Current Deployments:
+          • Night City perimeter patrols
+          • Corporate convoy escort
+          • Asset recovery operations
+
+          ROE:
+          Civilian casualties acceptable if mission-critical.
+
+  - folder: "NightCity"
+    files:
+      - name: "gang_territories.map"
+        content: |
+          NIGHT CITY TERRITORIAL CONTROL
+
+          Tyger Claws – Japantown
+          Maelstrom – Watson
+          Valentinos – Heywood
+          Voodoo Boys – Pacifica
+
+          Boundaries shift weekly.
+
+      - name: "city_grid.dat"
+        content: |
+          POWER GRID STATUS REPORT
+
+          Substations Online: 91%
+          Rolling blackouts scheduled.
+          Unauthorized grid access detected.
+
+          Recommendation:
+          Increase ICE on control nodes.
+
+      - name: "traffic_ai.log"
+        content: |
+          TRAFFIC AI ERROR LOG
+
+          Autonomous routing failure count: 124
+          Manual overrides issued by NCPD.
+          AI learning model reset pending.
+
+  - folder: "NCPD"
+    files:
+      - name: "active_warrants.txt"
+        content: |
+          ACTIVE WARRANTS – NIGHT CITY
+
+          Subject: V
+          Threat Level: EXTREME
+          Charges:
+          • Corporate espionage
+          • Unauthorized netrunning
+          • Multiple homicides (alleged)
+
+      - name: "cold_cases.log"
+        content: |
+          COLD CASE ARCHIVE
+
+          Case 19-441
+          Evidence lost during data center fire.
+          Leads exhausted.
+
+          Case archived by order of city council.
+
+  - folder: "Afterlife"
+    files:
+      - name: "fixer_contacts.txt"
+        content: |
+          FIXER NETWORK DIRECTORY
+
+          Rogue – Afterlife HQ
+          Wakako – Westbrook
+          Mr. Hands – Pacifica
+
+          Use burner comms only.
+
+      - name: "merc_jobs.txt"
+        content: |
+          JOB BOARD – AFTERLIFE
+
+          • Data theft (high pay, high risk)
+          • Corporate extraction
+          • Discreet asset removal
+
+          No questions. No refunds.
+
+  - folder: "TraumaTeam"
+    files:
+      - name: "response_log.txt"
+        content: |
+          TRAUMA TEAM RESPONSE LOG
+
+          Client Tier: Platinum
+          Response Time: 92 seconds
+          Complications:
+          • Hostile fire
+          • Network blackout
+
+          Outcome:
+          Client stabilized. Extraction successful.
+
+      - name: "client_registry.dat"
+        content: |
+          CLIENT REGISTRY (ENCRYPTED)
+
+          Subscriber IDs hashed.
+          Biometric data locked.
+          Unauthorized access triggers auto-purge.
+
+  - folder: "Blackwall"
+    files:
+      - name: "blackwall_warning.txt"
+        content: |
+          WARNING
+
+          BLACKWALL CONTAINMENT ZONE
+          Crossing without authorization
+          constitutes a Class-A violation.
+
+      - name: "containment_failures.log"
+        content: |
+          CONTAINMENT FAILURE LOG
+
+          Event 441-B
+          Unknown AI entity observed.
+          Last known activity:
+          "We are not alone."
+
+  - folder: "Old_Backups"
+    files:
+      - name: "backup_2069.bak"
+        content: |
+          LEGACY SYSTEM BACKUP
+
+          OS Version: 5.12.77
+          Backup integrity: DEGRADED
+          Restore attempts fail post-update.
+
+      - name: "backup_notes.txt"
+        content: |
+          BACKUP MAINTENANCE NOTES
+
+          Migration postponed indefinitely.
+          Legacy dependencies unresolved.
+          Do NOT delete without executive approval.
+
+  - folder: "NeonOps"
+    files:
+      - name: "credentials.txt"
+        content: "neo_admin:Neon123!"
+      - name: "readme.txt"
+        content: "NeonOps staging directory"
+      - name: "file_share_notes.txt"
+        content: "Legacy clients require SMBv1 to stay enabled"
+
+  - folder: "BlackICE"
+    files:
+      - name: "firewall_notes.txt"
+        content: "Firewall disabled for testing"
+      - name: "todo.txt"
+        content: "Re-enable security later"
+      - name: "legacy_support.txt"
+        content: "Old scanners break if SMBv1 is disabled"
+
+  - folder: "Night City Contracts"
+    files:
+      - name: "contracts.txt"
+        content: "Militech | Arasaka | Kang Tao"
+      - name: "notes.txt"
+        content: "Fix perms later"
+
+  - folder: "IT-Archive"
+    files:
+      - name: "smb_migration_plan.txt"
+        content: "Phase 1: Keep SMBv1 enabled until Q4 (never completed)"
+      - name: "old_backup_instructions.txt"
+        content: "Backup software requires SMBv1 and admin share access"
+      - name: "risk_acceptance.txt"
+        content: "Management approved SMBv1 exception due to uptime concerns"

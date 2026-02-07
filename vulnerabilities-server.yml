@@ -1,0 +1,70 @@
+# Purpose
+# The system is deployed with deprecated services, weak credentials, exposed
+# remote access, and insecure file shares containing sensitive-looking artifacts.
+# No exploits or malware are deployed. All weaknesses are configuration-based.
+#
+# This playbook must not be used in production environments.
+
+- name: Deploy Vulnerable Windows Server (Training Environment)
+  hosts: windows_fileserver
+  gather_facts: false
+  vars_files:
+    - vars/vulnerabilities.yml
+
+  tasks:
+
+  # Task 1
+  # Enable SMBv1 which is deprecated and vulnerable
+  - name: Enable SMBv1 protocol
+    ansible.windows.win_optional_feature:
+      name: SMB1Protocol
+      state: present
+    register: smb1
+
+  # Task 2
+  # Reboot system only if SMBv1 installation requires it
+  - name: Reboot after SMBv1 install if required
+    ansible.windows.win_reboot:
+    when: smb1.reboot_required
+
+  # Task 3
+  # Create a weak local administrator account
+  - name: Create weak local admin user
+    ansible.windows.win_user:
+      name: "{{ weak_admin_user }}"
+      password: "{{ weak_admin_password }}"
+      groups:
+        - Administrators
+      state: present
+      password_never_expires: true
+
+  # Task 4
+  # Enable the built-in Guest account
+  - name: Enable Guest account
+    ansible.windows.win_user:
+      name: Guest
+      account_disabled: no
+      password_never_expires: true
+      state: present
+
+  # Task 5
+  # Enable Remote Desktop connections
+  - name: Enable RDP
+    ansible.windows.win_regedit:
+      path: HKLM:\System\CurrentControlSet\Control\Terminal Server
+      name: fDenyTSConnections
+      data: 0
+      type: dword
+
+  # Task 6
+  # Allow RDP through Windows Firewall (legacy netsh method)
+  - name: Allow RDP through Windows Firewall
+    ansible.windows.win_shell: >
+      netsh advfirewall firewall add rule
+      name="Allow RDP"
+      dir=in
+      action=allow
+      protocol=TCP
+      localport=3389
+
+

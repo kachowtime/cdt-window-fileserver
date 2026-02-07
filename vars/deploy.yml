@@ -1,0 +1,14 @@
+# vars/deploy.yml
+
+# Root folder for all shares
+file_share_root: "C:\\CyberpunkShares"
+
+# Public share folder
+file_share_name: "NeonPublic"
+file_share_description: "Cyberpunk CCDC Public Share"
+
+# Local users for share permissions
+file_share_admin:
+  - "Administrator"   # Full control
+file_share_user:
+  - "Everyone"        # Change access

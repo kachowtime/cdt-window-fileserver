@@ -1,0 +1,72 @@
+# File: deploy-server.yml
+#
+# Purpose
+# Configures a baseline Windows Server 2022 file server.
+# Installs the File Server role, creates share directories,
+# publishes an SMB share, and applies NTFS + share permissions.
+#
+# Scope
+# Standalone system
+# Local permissions only (no domain required)
+#
+# Environment
+# Windows Server 2022
+# WinRM enabled
+# Local Administrator credentials
+
+- name: Baseline Windows 2022 File Server
+  hosts: windows_fileserver
+  gather_facts: yes
+  vars_files:
+    - vars/deploy.yml
+  become: yes
+  become_method: runas
+  become_user: Administrator
+
+  tasks:
+
+    # Task 1: Install File Server role
+    # Purpose: Enables SMB file sharing functionality
+    - name: Install File Server role
+      ansible.windows.win_feature:
+        name: FS-FileServer
+        state: present
+
+    # Task 2: Create root directory for file shares
+    # Purpose: Base directory to hold all file shares
+    - name: Create root file share directory
+      ansible.windows.win_file:
+        path: "{{ file_share_root }}"
+        state: directory
+
+    # Task 3: Create Public share directory
+    # Purpose: Directory to be exposed via SMB
+    - name: Create Public share directory
+      ansible.windows.win_file:
+        path: "{{ file_share_root }}\\{{ file_share_name }}"
+        state: directory
+
+    # Task 4: Apply NTFS permissions
+    # Purpose: Allows users to access files at the filesystem level
+    - name: Set NTFS permissions on Public share
+      ansible.windows.win_acl:
+        path: "{{ file_share_root }}\\{{ file_share_name }}"
+        user: "{{ item.user }}"
+        rights: "{{ item.rights }}"
+        type: allow
+        inheritance: ContainerInherit,ObjectInherit
+        state: present
+      loop:
+        - { user: "{{ file_share_admin[0] }}", rights: "FullControl" }
+        - { user: "{{ file_share_user[0] }}", rights: "Modify" }
+
+    # Task 5: Create SMB share with permissions
+    # Purpose: Publishes the directory over the network
+    - name: Create SMB Public share
+      ansible.windows.win_share:
+        name: "{{ file_share_name }}"
+        path: "{{ file_share_root }}\\{{ file_share_name }}"
+        description: "{{ file_share_description }}"
+        full: "{{ file_share_admin[0] }}"    # use single string, not list
+        change: "{{ file_share_user[0] }}"   # use single string, not list
+        state: present
