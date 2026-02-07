@@ -18,7 +18,7 @@
   hosts: windows_fileserver
   gather_facts: yes
   vars_files:
-    - vars/deploy.yml
+    - ../vars/deploy.yml
   become: yes
   become_method: runas
   become_user: Administrator

@@ -9,8 +9,8 @@
   gather_facts: no
 
   vars_files:
-    - vars/deploy.yml       # provides file_share_root & file_share_name
-    - vars/populate.yml     # provides populate content & populate_share_path
+    - ../vars/deploy.yml       # provides file_share_root & file_share_name
+    - ../vars/populate.yml     # provides populate content & populate_share_path
 
   become: yes
   become_method: runas
