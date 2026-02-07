@@ -9,4 +9,4 @@
 
 - import_playbook: playbooks/deploy-server.yml
 - import_playbook: playbooks/populate-server.yml
-- import_playbook: playbooks/vulnerablities-server.yml
+- import_playbook: playbooks/vulnerabilities-server.yml
