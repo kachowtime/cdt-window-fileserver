@@ -7,6 +7,6 @@
 # Loads variables from vars/ folder for all playbooks.
 
 
-- import_playbook: playbooks/deploy.yml
-- import_playbook: playbooks/config.yml
-- import_playbook: playbooks/vulnerable.yml
+- import_playbook: playbooks/deploy-server.yml
+- import_playbook: playbooks/populate-server.yml
+- import_playbook: playbooks/vulnerablities-server.yml
