@@ -6,22 +6,7 @@
 #   3. vulnerable.yml - vulnerability tasks
 # Loads variables from vars/ folder for all playbooks.
 
-- name: Master Playbook
-  hosts: all
-  become: yes
-  gather_facts: yes
 
-  vars_files:
-    - vars/deploy.yml   	 # deployment variables
-    - vars/populate.yml   	 # populate variables
-    - vars/vulnerabilities.yml   # vulnerability variables
-
-  tasks:
-    - name: Run deployment tasks
-      import_playbook: playbooks/deploy.yml
-
-    - name: Run configuration tasks
-      import_playbook: playbooks/config.yml
-
-    - name: Run vulnerable tasks
-      import_playbook: playbooks/vulnerable.yml
+- import_playbook: playbooks/deploy.yml
+- import_playbook: playbooks/config.yml
+- import_playbook: playbooks/vulnerable.yml
