@@ -35,7 +35,8 @@ The vulnerabilities playbook (vulnerabilities-server.yml) applies insecure confi
 
 All playbooks rely on external variable files stored in the vars/ directory. This separation allows configuration values such as paths, share names, and user permissions to be modified without changing the playbook logic. Together, this playbook structure provides a modular, repeatable, and easily verifiable deployment of a vulnerable Windows file server.
 
-##**Verification Steps**
+**Verification Steps**
+
 Verification should be performed directly on the physical Windows server after the Ansible playbooks complete. Confirm that the File Server service (LanmanServer) is running using the Services console or PowerShell. Verify that the shared directory exists on the filesystem and that NTFS permissions are applied correctly. Check that the SMB share is present and accessible through Computer Management or by connecting to the share locally. Screenshots should show running services, folder permissions, and successful access to the file share.
 
 **Troubleshooting Techniques**
