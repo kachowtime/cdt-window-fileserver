@@ -2,7 +2,8 @@
 
 The Ansible control node used for this deployment is recommended to be an Ubuntu Linux system. Ubuntu provides stable and well‑supported Ansible packages and includes native support for required dependencies such as Python, OpenSSH, and Ansible Windows collections. Using Ubuntu as the control node simplifies installation, reduces compatibility issues, and ensures consistent execution of Windows‑focused Ansible playbooks.
 
-_Note:_ In the home repository ubuntuConfig.sh is a script that can either be preconfigured on OpenStacks or directly run on the box by -- chmod+x ubuntuConfig.sh ./ubuntuConfig.sh
+
+_Note:_ In the home repository ubuntuConfig.sh is a script that can either be preconfigured on OpenStacks or directly run on the box by -- <chmod+x ubuntuConfig.sh> <./ubuntuConfig.sh>
 
 **Installation & Configuration**
 
