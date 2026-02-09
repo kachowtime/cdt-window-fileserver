@@ -11,6 +11,7 @@
   vars_files:
     - ../vars/deploy.yml       # provides file_share_root & file_share_name
     - ../vars/populate.yml     # provides populate content & populate_share_path
+    - ../vars/inject.yml       # provides specific files for Blue Team injects
 
   become: yes
   become_method: runas
