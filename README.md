@@ -76,9 +76,10 @@ _Note_: ubuntuConfig.sh can configure requirements on OpenStacks. This script sh
    Edit inventory.ini with your target IP and users credentials:
 
 6. Verify inventory connection.
-   ansible windows -i inventory.ini -m win_ping
+
+   [ansible all -i inventory.ini -m win_ping]
    
-7. Run playbook
+8. Run playbook
    [ansible-playbook -i inventory.ini playbook.yml]
 
    
@@ -95,7 +96,7 @@ Windows-focused SMB enumeration and exploitation techniques.
 Red Team:
 - Enumerate SMB shares from Linux or Windows hosts
 - Access sensitive files using weak permissions
--Stage ransomware or data theft via SMB
+- Stage ransomware or data theft via SMB
 
 Blue Team:
 - Detect anomalous SMB access
