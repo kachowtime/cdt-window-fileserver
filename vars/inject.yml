@@ -25,157 +25,157 @@ populate:
           Do not guess attribution — justify it using evidence
           from logs, IOCs, and threat intelligence profiles.
 
-      - folder: "APT29_CozyBear"
-        files:
-          - name: "Overview.txt"
-            content: |
-              Threat Actor: Cozy Bear Syndicate (APT29)
-              Origin: Russian state-linked (SVR)
-              Role: Stealth cyber espionage
+  - folder: "APT29_CozyBear"
+    files:
+      - name: "Overview.txt"
+        content: |
+          Threat Actor: Cozy Bear Syndicate (APT29)
+          Origin: Russian state-linked (SVR)
+          Role: Stealth cyber espionage
 
-              Primary objectives include long-term access,
-              intelligence theft, and supply-chain compromise.
+          Primary objectives include long-term access,
+          intelligence theft, and supply-chain compromise.
 
-          - name: "TTPs.txt"
-            content: |
-              Known TTPs:
-              - Spear phishing with diplomatic or corporate lures
-              - Supply-chain backdooring
-              - OAuth token abuse and cloud persistence
-              - Stealth C2 using legitimate services
+      - name: "TTPs.txt"
+        content: |
+          Known TTPs:
+          - Spear phishing with diplomatic or corporate lures
+          - Supply-chain backdooring
+          - OAuth token abuse and cloud persistence
+          - Stealth C2 using legitimate services
 
-          - name: "IOCs.txt"
-            content: |
-              Sample Indicators:
-              - Abnormal OAuth app registration
-              - PowerShell-based lateral movement
-              - Unusual cloud API activity
+      - name: "IOCs.txt"
+        content: |
+          Sample Indicators:
+          - Abnormal OAuth app registration
+          - PowerShell-based lateral movement
+          - Unusual cloud API activity
 
-      - folder: "Lazarus_BlackVault"
-        files:
-          - name: "Overview.txt"
-            content: |
-              Threat Actor: Lazarus Group (Black Vault Cartel)
-              Origin: North Korea (Hidden Cobra)
-              Role: Financial theft and destructive attacks
+  - folder: "Lazarus_BlackVault"
+    files:
+      - name: "Overview.txt"
+        content: |
+          Threat Actor: Lazarus Group (Black Vault Cartel)
+          Origin: North Korea (Hidden Cobra)
+          Role: Financial theft and destructive attacks
 
-          - name: "TTPs.txt"
-            content: |
-              Known TTPs:
-              - Weaponized Office documents
-              - Cryptocurrency theft
-              - SWIFT transaction manipulation
-              - Wiper malware deployment
+      - name: "TTPs.txt"
+        content: |
+          Known TTPs:
+          - Weaponized Office documents
+          - Cryptocurrency theft
+          - SWIFT transaction manipulation
+          - Wiper malware deployment
 
-          - name: "IOCs.txt"
-            content: |
-              Sample Indicators:
-              - Suspicious SWIFT messages
-              - Outbound connections to known Lazarus C2 ranges
-              - Malware execution following phishing emails
+      - name: "IOCs.txt"
+        content: |
+          Sample Indicators:
+          - Suspicious SWIFT messages
+          - Outbound connections to known Lazarus C2 ranges
+          - Malware execution following phishing emails
 
-      - folder: "APT28_FancyBear"
-        files:
-          - name: "Overview.txt"
-            content: |
-              Threat Actor: Fancy Bear Legion (APT28)
-              Origin: Russian military intelligence (GRU)
-              Role: Aggressive cyber warfare and disruption
+  - folder: "APT28_FancyBear"
+    files:
+      - name: "Overview.txt"
+        content: |
+          Threat Actor: Fancy Bear Legion (APT28)
+          Origin: Russian military intelligence (GRU)
+          Role: Aggressive cyber warfare and disruption
 
-              Unlike Cozy Bear, Fancy Bear prioritizes speed,
-              disruption, and information leaks over stealth.
+          Unlike Cozy Bear, Fancy Bear prioritizes speed,
+          disruption, and information leaks over stealth.
 
-          - name: "TTPs.txt"
-            content: |
-              Known TTPs:
-              - Credential harvesting via phishing portals
-              - Exploit kits targeting unpatched services
-              - Data leaks used for influence operations
-              - DDoS attacks for disruption
+      - name: "TTPs.txt"
+        content: |
+          Known TTPs:
+          - Credential harvesting via phishing portals
+          - Exploit kits targeting unpatched services
+          - Data leaks used for influence operations
+          - DDoS attacks for disruption
 
-          - name: "IOCs.txt"
-            content: |
-              Sample Indicators:
-              - X-Agent / X-Tunnel malware artifacts
-              - Sudden large-scale data exfiltration
-              - Spike in failed authentication attempts
+      - name: "IOCs.txt"
+        content: |
+          Sample Indicators:
+          - X-Agent / X-Tunnel malware artifacts
+          - Sudden large-scale data exfiltration
+          - Spike in failed authentication attempts
 
-      - folder: "APT10_CloudDragon"
-        files:
-          - name: "Overview.txt"
-            content: |
-              Threat Actor: Cloud Dragon (APT10)
-              Origin: China-linked state actor
-              Role: Intellectual property and cloud espionage
+  - folder: "APT10_CloudDragon"
+    files:
+      - name: "Overview.txt"
+        content: |
+          Threat Actor: Cloud Dragon (APT10)
+          Origin: China-linked state actor
+          Role: Intellectual property and cloud espionage
 
-              APT10 is known for targeting managed service
-              providers to gain access to multiple victims
-              simultaneously.
+          APT10 is known for targeting managed service
+          providers to gain access to multiple victims
+          simultaneously.
 
-          - name: "TTPs.txt"
-            content: |
-              Known TTPs:
-              - MSP compromise for lateral access
-              - Credential dumping and reuse
-              - Cloud service abuse
-              - Long-term persistence
+      - name: "TTPs.txt"
+        content: |
+          Known TTPs:
+          - MSP compromise for lateral access
+          - Credential dumping and reuse
+          - Cloud service abuse
+          - Long-term persistence
 
-          - name: "IOCs.txt"
-            content: |
-              Sample Indicators:
-              - Admin logins from MSP accounts
-              - Reused credentials across environments
-              - Persistent access without obvious malware
+      - name: "IOCs.txt"
+        content: |
+          Sample Indicators:
+          - Admin logins from MSP accounts
+          - Reused credentials across environments
+          - Persistent access without obvious malware
 
-      - folder: "FIN7_GoldRush"
-        files:
-          - name: "Overview.txt"
-            content: |
-              Threat Actor: FIN7 (Gold Rush Crew)
-              Origin: Criminal organization
-              Role: Financial data theft
+  - folder: "FIN7_GoldRush"
+    files:
+      - name: "Overview.txt"
+        content: |
+          Threat Actor: FIN7 (Gold Rush Crew)
+          Origin: Criminal organization
+          Role: Financial data theft
 
-              FIN7 focuses on monetization through payment
-              card theft and point-of-sale compromise.
+          FIN7 focuses on monetization through payment
+          card theft and point-of-sale compromise.
 
-          - name: "TTPs.txt"
-            content: |
-              Known TTPs:
-              - Phishing with fake job offers
-              - PowerShell-based malware loaders
-              - POS system compromise
-              - Data exfiltration to remote servers
+      - name: "TTPs.txt"
+        content: |
+          Known TTPs:
+          - Phishing with fake job offers
+          - PowerShell-based malware loaders
+          - POS system compromise
+          - Data exfiltration to remote servers
 
-          - name: "IOCs.txt"
-            content: |
-              Sample Indicators:
-              - Suspicious PowerShell execution
-              - POS memory scraping behavior
-              - Outbound traffic to unfamiliar IP ranges
+      - name: "IOCs.txt"
+        content: |
+          Sample Indicators:
+          - Suspicious PowerShell execution
+          - POS memory scraping behavior
+          - Outbound traffic to unfamiliar IP ranges
 
-      - folder: "DarkHydra_Hacktivists"
-        files:
-          - name: "Overview.txt"
-            content: |
-              Threat Actor: Dark Hydra
-              Origin: Hacktivist collective
-              Role: Disruption and propaganda
+  - folder: "DarkHydra_Hacktivists"
+    files:
+      - name: "Overview.txt"
+        content: |
+          Threat Actor: Dark Hydra
+          Origin: Hacktivist collective
+          Role: Disruption and propaganda
 
-              This group is motivated by ideology rather than
-              profit or espionage, targeting public-facing
-              systems for visibility.
+          This group is motivated by ideology rather than
+          profit or espionage, targeting public-facing
+          systems for visibility.
 
-          - name: "TTPs.txt"
-            content: |
-              Known TTPs:
-              - Website defacement
-              - DDoS attacks
-              - Credential stuffing
-              - Public data leaks
+      - name: "TTPs.txt"
+        content: |
+          Known TTPs:
+          - Website defacement
+          - DDoS attacks
+          - Credential stuffing
+          - Public data leaks
 
-          - name: "IOCs.txt"
-            content: |
-              Sample Indicators:
-              - Web shell artifacts
-              - High-volume traffic spikes
-              - Defaced web content
+      - name: "IOCs.txt"
+        content: |
+          Sample Indicators:
+          - Web shell artifacts
+          - High-volume traffic spikes
+          - Defaced web content
