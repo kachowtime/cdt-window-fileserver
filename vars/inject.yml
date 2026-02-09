@@ -25,7 +25,15 @@ populate:
           Do not guess attribution — justify it using evidence
           from logs, IOCs, and threat intelligence profiles.
 
-  - folder: "APT29_CozyBear"
+          Intelligence has identify 6 organizations:
+          - CozyBear 
+          - Lazarus_BlackVault
+          - GoldRush
+          - FancyBear
+          - CloudDragon
+          - DarkHydra_Hacktivists
+
+  - folder: "CozyBear"
     files:
       - name: "Overview.txt"
         content: |
@@ -74,7 +82,7 @@ populate:
           - Outbound connections to known Lazarus C2 ranges
           - Malware execution following phishing emails
 
-  - folder: "APT28_FancyBear"
+  - folder: "FancyBear"
     files:
       - name: "Overview.txt"
         content: |
@@ -100,7 +108,7 @@ populate:
           - Sudden large-scale data exfiltration
           - Spike in failed authentication attempts
 
-  - folder: "APT10_CloudDragon"
+  - folder: "CloudDragon"
     files:
       - name: "Overview.txt"
         content: |
@@ -127,7 +135,7 @@ populate:
           - Reused credentials across environments
           - Persistent access without obvious malware
 
-  - folder: "FIN7_GoldRush"
+  - folder: "GoldRush"
     files:
       - name: "Overview.txt"
         content: |
