@@ -18,7 +18,7 @@
 
   vars_files:
     - ../vars/deploy.yml          # Server-wide settings (file_share_root)
-    - ../vars/public.yml          # Share + content definition
+    - ../vars/populate.yml        # Share + content definition
     - ../vars/threatIntel.yml     # Additional share + content definition
 
   become: yes
