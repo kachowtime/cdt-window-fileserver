@@ -1,11 +1,24 @@
 # vars/deploy.yml
 
 # Root folder for all shares
-file_share_root: "C:\\CyberpunkShares"
+file_share_root: "C:\\Shares"
 
 # Public share folder
-file_share_name: "NeonPublic"
-file_share_description: "Cyberpunk CCDC Public Share"
+shares:
+  - name: "NeonPublic"
+    description: "Main Night City Public Hub"
+    admins: ["Administrator"]
+    users: ["Everyone"]
+
+  - name: "Archives"
+    description: "Arasaka and Militech internal archives"
+    admins: ["Administrator"]
+    users: ["Everyone"]
+
+  - name: "Intelligence"
+    description: "Threat Actor Profiles and IOCs"
+    admins: ["Administrator"]
+    users: ["Everyone"]
 
 # Local users for share permissions
 file_share_admin:

@@ -11,7 +11,7 @@
   vars_files:
     - ../vars/deploy.yml       # provides file_share_root & file_share_name
     - ../vars/populate.yml     # provides populate content & populate_share_path
-    - ../vars/inject.yml       # provides specific files for Blue Team injects
+    - ../vars/threatIntel.yml       # provides specific files for Blue Team injects
 
   become: yes
   become_method: runas
@@ -19,16 +19,15 @@
 
   tasks:
 
-    # Task 1: Create cyberpunk subfolders inside the share
-    - name: Create cyberpunk folders
-      ansible.windows.win_file:
-        path: "{{ populate_share_path }}\\{{ item.folder }}"
-        state: directory
-      loop: "{{ populate }}"
+  - name: Create folders in shares
+    ansible.windows.win_file:
+      path: "{{ file_share_root }}\\{{ item.0.name }}\\{{ item.1.name }}"
+      state: directory
+    loop: "{{ shares | subelements('folders') }}"
 
-    # Task 2: Populate cyberpunk files
-    - name: Populate cyberpunk files
-      ansible.windows.win_copy:
-        dest: "{{ populate_share_path }}\\{{ item.0.folder }}\\{{ item.1.name }}"
-        content: "{{ item.1.content }}"
-      loop: "{{ populate | subelements('files') }}"
+  - name: Create files in folders
+    ansible.windows.win_copy:
+      dest: "{{ file_share_root }}\\{{ item.0.0.name }}\\{{ item.0.1.name }}\\{{ item.1.name }}"
+      content: "{{ item.1.content }}"
+    loop: "{{ shares | subelements('folders') | subelements('files') }}"
+

@@ -1,6 +1,7 @@
 # Purpose
 # Cyberpunk-themed junk content for SMB share population
 # Used by deploy-populate.yml
+
 populate_share_path: "{{ file_share_root }}\\{{ file_share_name }}"
 
 populate:
