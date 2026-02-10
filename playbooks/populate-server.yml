@@ -1,17 +1,25 @@
 # File: populate-server.yml
 #
 # Purpose
-# Populates an existing Windows File Server share with cyberpunk-themed content.
-# Depends on deploy-server.yml having already run.
+# Populates existing SMB shares on a Windows Server 2022 file server.
+# This playbook assumes that deploy-server has already:
+#   - Installed the File Server role
+#   - Created share directories
+#   - Published SMB shares
+#   - Applied NTFS and share permissions
+#
+# This playbook is content-only:
+#   - Creates folders inside shares
+#   - Creates files inside those folders
 
-- name: Populate File Server Share
+- name: Populate Windows File Server Shares
   hosts: windows_fileserver
   gather_facts: no
 
   vars_files:
-    - ../vars/deploy.yml       # provides file_share_root & file_share_name
-    - ../vars/populate.yml     # provides populate content & populate_share_path
-    - ../vars/threatIntel.yml       # provides specific files for Blue Team injects
+    - ../vars/deploy.yml          # Server-wide settings (file_share_root)
+    - ../vars/content/public.yml # Share + content definition
+    - ../vars/content/intel.yml  # Additional share + content definition
 
   become: yes
   become_method: runas
@@ -19,15 +27,25 @@
 
   tasks:
 
-  - name: Create folders in shares
-    ansible.windows.win_file:
-      path: "{{ file_share_root }}\\{{ item.0.name }}\\{{ item.1.name }}"
-      state: directory
-    loop: "{{ shares | subelements('folders') }}"
+    # Create all defined folders inside each share
+    #
+    # Example result:
+    #   C:\Shares\Intel\APT_Reports
+    #   C:\Shares\Public\Announcements
+    #
+    - name: Create folders inside shares
+      ansible.windows.win_file:
+        path: "{{ file_share_root }}\\{{ item.0.name }}\\{{ item.1.name }}"
+        state: directory
+      loop: "{{ shares | subelements('folders') }}"
 
-  - name: Create files in folders
-    ansible.windows.win_copy:
-      dest: "{{ file_share_root }}\\{{ item.0.0.name }}\\{{ item.0.1.name }}\\{{ item.1.name }}"
-      content: "{{ item.1.content }}"
-    loop: "{{ shares | subelements('folders') | subelements('files') }}"
-
+    # Create files inside each folder
+    #
+    # File content is defined directly in vars so that
+    # Blue Team injects and scenario files are version-controlled
+    #
+    - name: Create files inside folders
+      ansible.windows.win_copy:
+        dest: "{{ file_share_root }}\\{{ item.0.0.name }}\\{{ item.0.1.name }}\\{{ item.1.name }}"
+        content: "{{ item.1.content }}"
+      loop: "{{ shares | subelements('folders') | subelements('files') }}"
