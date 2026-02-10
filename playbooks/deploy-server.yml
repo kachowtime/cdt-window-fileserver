@@ -14,48 +14,58 @@
 # WinRM enabled
 # Local Administrator credentials
 
-- name: Install File Server role
-  ansible.windows.win_feature:
-    name: FS-FileServer
-    state: present
+- name: Baseline Windows 2022 File Server
+  hosts: windows_fileserver
+  gather_facts: yes
+  vars_files:
+    - ../vars/deploy.yml
+  become: yes
+  become_method: runas
+  become_user: Administrator
 
-- name: Create root share directory
-  ansible.windows.win_file:
-    path: "{{ file_share_root }}"
-    state: directory
+  tasks:
+    - name: Install File Server role
+      ansible.windows.win_feature:
+        name: FS-FileServer
+        state: present
 
-- name: Create share directories
-  ansible.windows.win_file:
-    path: "{{ file_share_root }}\\{{ item.name }}"
-    state: directory
-  loop: "{{ shares }}"
+    - name: Create root share directory
+      ansible.windows.win_file:
+        path: "{{ file_share_root }}"
+        state: directory
 
-- name: Set NTFS permissions (Admins)
-  ansible.windows.win_acl:
-    path: "{{ file_share_root }}\\{{ item.0.name }}"
-    user: "{{ item.1 }}"
-    rights: FullControl
-    type: allow
-    inheritance: ContainerInherit,ObjectInherit
-    state: present
-  loop: "{{ shares | subelements('admins') }}"
+    - name: Create share directories
+      ansible.windows.win_file:
+        path: "{{ file_share_root }}\\{{ item.name }}"
+        state: directory
+      loop: "{{ shares }}"
 
-- name: Set NTFS permissions (Users)
-  ansible.windows.win_acl:
-    path: "{{ file_share_root }}\\{{ item.0.name }}"
-    user: "{{ item.1 }}"
-    rights: Modify
-    type: allow
-    inheritance: ContainerInherit,ObjectInherit
-    state: present
-  loop: "{{ shares | subelements('users') }}"
+    - name: Set NTFS permissions (Admins)
+      ansible.windows.win_acl:
+        path: "{{ file_share_root }}\\{{ item.0.name }}"
+        user: "{{ item.1 }}"
+        rights: FullControl
+        type: allow
+        inheritance: ContainerInherit,ObjectInherit
+        state: present
+      loop: "{{ shares | subelements('admins') }}"
 
-- name: Create SMB shares
-  ansible.windows.win_share:
-    name: "{{ item.name }}"
-    path: "{{ file_share_root }}\\{{ item.name }}"
-    description: "{{ item.description }}"
-    full: "{{ item.admins[0] }}"
-    change: "{{ item.users[0] }}"
-    state: present
-  loop: "{{ shares }}"
+    - name: Set NTFS permissions (Users)
+      ansible.windows.win_acl:
+        path: "{{ file_share_root }}\\{{ item.0.name }}"
+        user: "{{ item.1 }}"
+        rights: Modify
+        type: allow
+        inheritance: ContainerInherit,ObjectInherit
+        state: present
+      loop: "{{ shares | subelements('users') }}"
+
+    - name: Create SMB shares
+      ansible.windows.win_share:
+        name: "{{ item.name }}"
+        path: "{{ file_share_root }}\\{{ item.name }}"
+        description: "{{ item.description }}"
+        full: "{{ item.admins[0] }}"
+        change: "{{ item.users[0] }}"
+        state: present
+      loop: "{{ shares }}"
